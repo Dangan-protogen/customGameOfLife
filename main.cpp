@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include <fstream>
+#include <string>
 
 
+using namespace std;
 
 //taille de la fenetre
 
@@ -216,7 +219,7 @@ void nouvelleGeneration(bool cellule[RESOLUTION][RESOLUTION])
 
 
 
-int main()
+int main(int argc, char *argv[])
 
 {
 
@@ -256,9 +259,35 @@ int main()
 
     }
 
+    ifstream myfile;
+    myfile.open(argv[1]);
+
+    int x = 0;
+  
+    string temp;
+
+    while(myfile >> temp)
+    {
+	for(int y = 0; y < temp.size();y++)
+        {
+		//cout << temp[i] << endl;
+		if (temp[y] == '0')
+		{
+			tabCellule[x][y] = false;
+		}else{
+			tabCellule[x][y] = true;
+		}
+		
+        }
+	x++;
+    }
 
 
-    tabCellule[20][10] = true;
+
+
+
+
+    /*tabCellule[20][10] = true;
 
     tabCellule[20][11] = true;
 
@@ -272,11 +301,11 @@ int main()
 
 
 
-    tabCellule[10][10] = true;
+    /*tabCellule[10][10] = true;
 
     tabCellule[10][11] = true;
 
-    tabCellule[10][12] = true;
+    tabCellule[10][12] = true;*/
 
 
 
